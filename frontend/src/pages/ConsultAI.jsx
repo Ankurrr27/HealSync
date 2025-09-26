@@ -51,7 +51,7 @@ export default function ConsultAI() {
       setMessages((prev) => [
         ...prev,
         {
-          text: `Hello! I'm your digital health companion. For a more detailed consultation, please consider contacting a human doctor.`,
+          text: `Hello! I'm your digital health companion Heal Singh . For a more detailed consultation, please consider contacting a human doctor.`,
           sender: 'ai',
         },
       ]);
