@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const Navbar = () => {
   return (
@@ -30,23 +31,29 @@ const Navbar = () => {
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2.586l.293-.293a1 1 0 011.414 0l.293.293V17a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
               </svg>
             </Link>
-
-            <span className="hover:text-blue-600 transition-colors duration-200 ">
-              Features
-            </span>
           </a>
+
+          <HashLink
+            smooth
+            to="/#features"
+            className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
+          >
+            Features
+          </HashLink>
+
           <Link
             to="/about"
             className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
           >
             About
           </Link>
-          <a
-            href="#"
+          <HashLink
+            smooth
+            to="/about#team"
             className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
           >
             Contact
-          </a>
+          </HashLink>
           <Link
             to="/profile"
             className="text-gray-600 hover:text-blue-600 transition-colors duration-200"

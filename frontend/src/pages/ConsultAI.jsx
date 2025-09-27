@@ -106,7 +106,7 @@ export default function ConsultAI() {
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 && (
           <div className="flex flex-col items-center h-full pt-10 text-center">
-            <h2 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-black mb-2 mt-20">HealSync AI</h2>
+            <h2 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-black p-2 mt-20">Heal Singh AI</h2>
             <p className="text-gray-900 text-lg mb-6 font-bold">
               Welcome! How can I assist with your health today?
             </p>

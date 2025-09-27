@@ -1,10 +1,89 @@
+// HealSync is our solution and Heal Singh is our AI companion.
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+
+// The array of phrases to cycle through
+const PHRASES = [
+  "HealSync is our Solution",
+  "Heal Singh is our AI",
+  // "24/7 AI Companion. 💡",
+];
+
+// Component for the typing/erasing animation
+const TypingText = () => {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
+  const [blink, setBlink] = useState(true);
+
+  // Typing logic
+  useEffect(() => {
+    // Blink cursor interval
+    const blinkInterval = setInterval(() => {
+      setBlink((prev) => !prev);
+    }, 500);
+
+    // Typing/Erasing speed (adjust as needed)
+    const typingSpeed = reverse ? 75 : 150;
+    const holdTime = 1500;
+
+    let timeout;
+    const currentPhrase = PHRASES[index];
+
+    if (!reverse && subIndex < currentPhrase.length) {
+      // Typing forward
+      timeout = setTimeout(() => {
+        setSubIndex((prev) => prev + 1);
+      }, typingSpeed);
+    } else if (!reverse && subIndex === currentPhrase.length) {
+      // Hold at the end of the phrase
+      timeout = setTimeout(() => {
+        setReverse(true);
+      }, holdTime);
+    } else if (reverse && subIndex > 0) {
+      // Erasing backward
+      timeout = setTimeout(() => {
+        setSubIndex((prev) => prev - 1);
+      }, typingSpeed);
+    } else if (reverse && subIndex === 0) {
+      // Finished erasing, move to the next phrase
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % PHRASES.length);
+    }
+
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(blinkInterval);
+    };
+  }, [subIndex, index, reverse]);
+
+  return (
+    <div className="w-full py-4 text-center bg-blue-100 border-b border-blue-100 shadow-sm sticky top-0 z-10">
+      <p className="text-xl font-semibold text-blue-800">
+        <span className="text-blue-600">
+          {PHRASES[index].substring(0, subIndex)}
+        </span>
+        <span
+          className={`font-light text-blue-600 border-r-2 border-blue-600 transition-opacity duration-300 ${
+            blink ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          &nbsp;
+        </span>
+      </p>
+    </div>
+  );
+};
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-start min-h-screen text-gray-900">
+      
+      {/* ADDED: The animated text component */}
+      <TypingText />
+
       {/* Hero Section */}
-      <section className="w-full flex flex-col md:flex-row items-center justify-center bg-[#e3f4ff] px-8 py-12 min-h-screen">
+      <section className="w-full flex flex-col md:flex-row items-center justify-center bg-[#e3f4ff] px-8  min-h-170">
         {/* Left Side: Heading, Tagline, Features */}
         <div className="md:w-1/2 flex flex-col gap-6 px-10 md:px-20 text-center md:text-left">
           {/* Logo / Heading */}
@@ -67,7 +146,7 @@ export default function Home() {
       </section>
 
       {/* New Section */}
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50" id="features">
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
@@ -114,66 +193,65 @@ export default function Home() {
               </Link>
 
               <Link
-  to="/profile" // Changed 'href' to 'to' for React Router
-  className="flex flex-col items-center text-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border-t-8 border-teal-500 transform hover:-translate-y-2"
->
-  <div className="text-teal-500 mb-4 p-4 bg-teal-100 rounded-full">
-    {/* SVG Icon for Health Records */}
-    <svg
-      className="h-12 w-12"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-      ></path>
-    </svg>
-  </div>
+                to="/profile" // Changed 'href' to 'to' for React Router
+                className="flex flex-col items-center text-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border-t-8 border-teal-500 transform hover:-translate-y-2"
+              >
+                <div className="text-teal-500 mb-4 p-4 bg-teal-100 rounded-full">
+                  {/* SVG Icon for Health Records */}
+                  <svg
+                    className="h-12 w-12"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                    ></path>
+                  </svg>
+                </div>
 
-  <h4 className="text-2xl font-extrabold text-gray-900 mb-2">
-    Secure Health Record Vault
-  </h4>
-  <p className="text-gray-600 text-base">
-    Keep all your medical history, test results, and prescriptions
-    in one safe place.
-  </p>
-</Link>
+                <h4 className="text-2xl font-extrabold text-gray-900 mb-2">
+                  Secure Health Record Vault
+                </h4>
+                <p className="text-gray-600 text-base">
+                  Keep all your medical history, test results, and prescriptions
+                  in one safe place.
+                </p>
+              </Link>
 
-             
-<Link
-  to="/posture"
-  className="flex flex-col items-center text-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border-t-8 border-purple-500 transform hover:-translate-y-2"
->
-  <div className="text-purple-500 mb-4 p-4 bg-purple-100 rounded-full">
-    <svg
-      className="h-12 w-12"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M13 10V3L4 14h7v7l9-11h-7z"
-      ></path>
-    </svg>
-  </div>
+              <Link
+                to="/posture"
+                className="flex flex-col items-center text-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border-t-8 border-purple-500 transform hover:-translate-y-2"
+              >
+                <div className="text-purple-500 mb-4 p-4 bg-purple-100 rounded-full">
+                  <svg
+                    className="h-12 w-12"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    ></path>
+                  </svg>
+                </div>
 
-  <h4 className="text-2xl font-extrabold text-gray-900 mb-2">
-    Posture Correction Tool
-  </h4>
-  <p className="text-gray-600 text-base">
-    Use your camera to get real-time feedback and fix your sitting
-    or standing posture.
-  </p>
-</Link>
+                <h4 className="text-2xl font-extrabold text-gray-900 mb-2">
+                  Posture Correction Tool
+                </h4>
+                <p className="text-gray-600 text-base">
+                  Use your camera to get real-time feedback and fix your sitting
+                  or standing posture.
+                </p>
+              </Link>
 
               <a
                 href="/consult-doctor"

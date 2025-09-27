@@ -70,7 +70,7 @@ export default function Footer() {
       <div className="mt-12 border-t border-gray-800 pt-6 px-6 text-center text-gray-500 text-sm">
         <p>
           Made with care by{" "}
-          <span className="text-blue-400 font-semibold">Ankur</span>
+          <span className="text-blue-400 font-semibold">HealSync Team</span>
         </p>
         <p>© {new Date().getFullYear()} All Rights Reserved.</p>
       </div>

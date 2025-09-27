@@ -55,7 +55,7 @@ const FeatureChat = () => {
     <div className="w-full max-w-lg mx-auto bg-white rounded-2xl shadow-xl p-4 md:p-6 h-124 flex flex-col">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-bold text-gray-800">
-          Chat with HealSync AI
+          Chat with Heal Singh AI
         </h3>
         <span className="text-xs text-green-500 font-semibold">Online</span>
       </div>
@@ -118,14 +118,14 @@ const HowItWorksSection = () => {
     const steps = [
         {
             number: 1,
-            title: "Ask Aura Anything",
+            title: "Ask Heal Singh Anything",
             description: "Type your health-related question, symptom, or wellness goal into the chat.",
             icon: "💬",
         },
         {
             number: 2,
             title: "Receive Instant Insight",
-            description: "Aura AI analyzes your query and provides a clear, evidence-based response immediately.",
+            description: "Heal Singh AI analyzes your query and provides a clear, evidence-based response immediately.",
             icon: "💡",
         },
         {
@@ -192,10 +192,10 @@ const About = () => {
       icon: "🔬",
       image: "Divy.jpg",
       social: {
-        github: "https://github.com/divyanshu",
-        linkedin: "https://linkedin.com/in/divyanshu",
+        github: "https://github.com/divyanshi555",
+        linkedin: "https://www.linkedin.com/in/divyanshi-purohit-950a66363?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ",
         instagram: "https://www.instagram.com/saffron.skies555/?hl=en",
-        email: "mailto:divyanshu@example.com",
+        email: "mailto:divyanshipurohit555@gmail.com",
       },
     },
     {
@@ -235,7 +235,7 @@ const About = () => {
           <div className="max-w-4xl w-full text-center">
             <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
               <span className="text-black">About</span>
-              <span className="text-blue-600"> HealSync AI</span>
+              <span className="text-blue-600"> Heal Singh AI</span>
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed max-w-xl mx-auto">
               Discover the future of personal wellness with your AI health
@@ -246,7 +246,7 @@ const About = () => {
         </div>
 
         {/* Key Features Section */}
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-10 mt-13 ">
+        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-10 mt-13 " >
           <span className="text-black">Key </span>
           <span className="text-blue-600">Features</span>
         </h2>
@@ -267,14 +267,14 @@ const About = () => {
 
 
         {/* Our Team Section */}
-        <div className="max-w-6xl w-full my-10 mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-10">
+        <div className="max-w-6xl w-full my-10 mx-auto" id="team">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-10"  > 
             <span className="text-black">Our</span>
             <span className="text-blue-600"> Visionaries</span>
           </h2>
 
           {/* Team Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" >
             {teamMembers.map((member, index) => (
               <div
                 key={index}
